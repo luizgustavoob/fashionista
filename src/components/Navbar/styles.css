@@ -1,0 +1,32 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar__title {
+  position: relative;
+  font-family: "Girassol", cursive;
+}
+
+.navbar__actions {
+  list-style-type: none;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;  
+}
+
+.navbar__action-item {
+  margin: 0 auto;
+  position: relative;
+}
+
+.navbar__action-item--button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.navbar__action-item:first-child {
+  margin-right: 25px;
+}

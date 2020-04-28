@@ -1,0 +1,13 @@
+.bag__footer {
+  background-color: black;  
+  padding: 5px 0;
+	text-align: center;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  position: absolute;
+}
+
+.bag__footer--subtotal {
+  color: white;
+}
