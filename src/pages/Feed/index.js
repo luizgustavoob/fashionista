@@ -5,6 +5,7 @@ import { fetchCatalog } from '../../store/actions/feedActions';
 import { setProductDetail } from '../../store/actions/productActions';
 import Discount from '../../components/Discount';
 import MoneyFormat from '../../components/MoneyFormat';
+import { formatProductRoute } from '../../routes/routesUtils';
 import './styles.css';
 
 const Feed = ( {catalog, fetchCatalog, setProductDetail} ) => {
@@ -17,8 +18,8 @@ const Feed = ( {catalog, fetchCatalog, setProductDetail} ) => {
 
   const handleProduct = product => {
     setProductDetail(product);
-    const path = product.name.toLowerCase();
-    history.push(`/product/${path}`);
+    const route =  formatProductRoute(product);
+    history.push(`/product/${route}`);
   };
 
   return (
