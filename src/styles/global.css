@@ -43,7 +43,25 @@ button {
 }
 
 .in-background {
-  overflow: hidden;
+  overflow-y: hidden;
+  transition: opacity 225ms;
+  transition-timing-function: cubic-bezier(.4,0,.2,1);
+}
+
+.in-background::before {
+  -webkit-backface-visibility: visible;
+  backface-visibility: visible;
+  background: rgb(0, 0, 0, 0.6);  
+  bottom: 0;
+  content: "";
+  height: 100vh;
+  opacity: .75;
+  pointer-events: all;
+  position: fixed;
+  right: 0;
+  visibility: visible;
+  width: 100vw;
+  z-index: 4;
 }
 
 @media screen and (max-width: 700px) {
