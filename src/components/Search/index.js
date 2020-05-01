@@ -1,23 +1,14 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import './styles.css';
 
-const Search = ({ onClose = () => {} }) => {
-
-  useEffect(() => {
-    document.querySelector('#search').addEventListener('click', event => {
-      const target = event.target;
-      if (target.classList.contains('closeable')) {
-        onClose();
-      }
-    });
-  });
+const Search = ( {onClose} ) => {
 
   return (
-    <div id="search" className="toggle__parent closeable" >
+    <div id="search" className="toggle__parent" >
       <div className="toggle__menu">
         <header className="toggle__header">
-          <button type="button" className="toggle__header--icon closeable">
-            <i className="fa fa-arrow-left closeable"></i>
+          <button type="button" className="toggle__header--icon" onClick={onClose}>
+            <i className="fa fa-arrow-left" />
           </button>          
           <p className="toggle__header--title">Buscar Produtos</p>
         </header>

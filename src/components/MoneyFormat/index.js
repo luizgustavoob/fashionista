@@ -1,18 +1,9 @@
 import React from 'react';
-import NumberFormat from 'react-number-format';
 
-const MoneyFormat = ({value, displayType, className = ''}) => {
+const MoneyFormat = ({value, className = ''}) => {    
   return (
-    <NumberFormat 
-      className={className}
-      value={value} 
-      displayType={displayType} 
-      prefix={'R$'} 
-      thousandSeparator={'.'} 
-      decimalSeparator={','} 
-      decimalScale={2} 
-      fixedDecimalScale={true} />
+    <span className={className}>{value}</span>
   );
-}
+};
 
 export default MoneyFormat;

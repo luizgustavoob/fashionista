@@ -22,14 +22,22 @@ ul {
   cursor: pointer;
 }
 
+button {
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  box-shadow: none;
+  outline: none;
+}
+
 .container-content {
-  width: 70%;
+  width: 80%;
   height: 100%;
   margin: calc(12vh + 5px) auto 0 auto;
 }
 
 .container {
-  width: 70%;
+  width: 80%;
   height: 100%;
   margin: 0 auto;
 }

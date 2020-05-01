@@ -1,54 +1,79 @@
-import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { toast } from 'react-toastify';
-import { addBag } from './../../components/Bag/actions';
-import { fetchProductById } from './../../services/api';
-import MoneyFormat from './../../components/MoneyFormat';
-import Discount from './../../components/Discount';
+import { addBag } from '../../store/actions/bagActions';
+import MoneyFormat from '../../components/MoneyFormat';
+import Discount from '../../components/Discount';
 import './styles.css';
 
-const Product = ( {dispatch} ) => {
+const Product = ( {product, addBag} ) => {
   
-  const params = useParams();
-  const [product, setProduct] = useState(null);
-  const [selectedSize, setSelectedSize] = useState('');
-  
-  useEffect(() => {
-    fetchProductById(params.id).then(setProduct);
-  }, [params.id]);
+  const [selectedSize, setSelectedSize] = useState(''); 
 
   const handleAddBag = product => {
-    const finalPrice = product.isPromotion ? product.promotionalPrice : product.price;
-    const productBag = {id: product.id, name: product.name, finalPrice, selectedSize, image: product.image};
-    dispatch(addBag(productBag));
-    toast.success(`${productBag.name} adicionado à sacola!`);
-  }
+    if (!selectedSize) {
+      toast.error('Precisamos saber o tamanho que você deseja!');
+      return;
+    }
+
+    const productToBag = {
+      name: product.name, 
+      finalPrice: product.actual_price, 
+      size: selectedSize.size, 
+      sku: selectedSize.sku, 
+      image: product.image,
+      installments: product.installments
+    };
+
+    addBag(productToBag);
+    toast.success(`Produto adicionado à sacola!`);
+    resetButtons();
+  };
+
+  const handleSelectedSize = size => {
+    const buttons = document.getElementsByClassName('product__size--select-button');
+    for (let i = 0; i < buttons.length; i++) {
+      if (buttons[i].id === size.size) {
+        setSelectedSize(size);
+        buttons[i].classList.add('product__size--button-selected');
+      } else {
+        buttons[i].classList.remove('product__size--button-selected');
+      }
+    }
+  };
+
+  const resetButtons = () => {
+    const buttons = document.getElementsByClassName('product__size--select-button');
+    for (let i = 0; i < buttons.length; i++) {
+      buttons[i].classList.remove('product__size--button-selected');
+    }
+    setSelectedSize('');
+  };
 
   return (
-    !product ? null :
     <section className="product">      
       <figure className="product__image">
-        <img src={product.image} className="product__image--img" alt={product.name}/>
+        <img src={product.image}
+         className="product__image--img" alt={product.name} title={product.name}/>
         { 
-          product.isPromotion &&
-          <Discount normalPrice={product.price} promoPrice={product.promotionalPrice} />
+          product.on_sale &&
+          <Discount discountPercentage={product.discount_percentage} />
         }
       </figure>
 
       <div className="product__info">        
         <p className="product__name">{product.name}</p>
         <div className="product__price">
-          <MoneyFormat className={"product__price--text"} 
-            value={product.promotionalPrice ? product.promotionalPrice : product.price} displayType={'text'} />          
+          <MoneyFormat className={"product__price--text"} value={product.actual_price} />
+          <span className="product__price--installments">Em Até {product.installments}</span>
         </div>
         <div className="product__size">
-          <p className="product__size--text">Escolha o tamanho</p>
-          { 
-            product.size.map(size => (
-              <button key={size} type="button" className="product__size--select-button" 
-                onClick={() => setSelectedSize(size)}>
-                {size}
+          <p className="product__size--text">Escolha o tamanho:</p>
+          {
+            product.sizes.filter(size => size.available).map(size => (
+              <button key={size.size} id={size.size} type="button" className="product__size--select-button" 
+                onClick={() => handleSelectedSize(size)}>
+                {size.size}
               </button>
             ))
           }
@@ -61,4 +86,8 @@ const Product = ( {dispatch} ) => {
   );
 }
 
-export default connect()(Product);
+const mapStateToProps = state => {
+  return { product: state.productDetail };
+}
+
+export default connect(mapStateToProps, {addBag})(Product);

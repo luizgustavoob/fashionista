@@ -1,16 +1,10 @@
 import React from 'react';
 import './styles.css';
 
-const Discount = ({normalPrice, promoPrice}) => {
-  
-  const applyPercentage = (normalPrice, promoPrice) => 
-    (100 - ((100 * promoPrice) / normalPrice)).toFixed(0);
-
+const Discount = ( {discountPercentage} ) => {
   return (
-    <span className="product__discount">
-      -{applyPercentage(normalPrice, promoPrice)}%
-    </span>
+    <span className="product__discount">-{discountPercentage}</span>
   );
-}
+};
 
 export default Discount;

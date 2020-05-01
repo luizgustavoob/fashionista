@@ -1,11 +1,9 @@
 import React, { Fragment } from 'react';
-
 import Header from './components/Header';
-
 import 'normalize.css';
-import './global.css';
+import './styles/global.css';
 
-export default function App({ children }) {
+const App = ({ children }) => {
   return (
     <Fragment>      
       <Header />
@@ -14,4 +12,6 @@ export default function App({ children }) {
       </div>    
     </Fragment>
   );
-}
+};
+
+export default App;

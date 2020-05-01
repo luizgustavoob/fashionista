@@ -1,9 +1,8 @@
 .catalog__length {
-	margin-top: 5px;
-	padding: 5px;
+	padding-top: 5px;	
 	font-size: 12px;
 	color: cadetblue;
-	margin-left: 10px;
+	margin-left: 5px;
 }
 
 .catalog {
@@ -18,15 +17,15 @@
 }
 
 .catalog__product {	
-	width: calc(25% - 20px);
-	height: 55vh;
+	width: calc(25% - 10px);
+	height: 75vh;
 	display: flex;
 	flex-direction: column;
 	background-color: #fff;
 	border-radius: 8px;
 	overflow: hidden;
 	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-	margin: 0 10px 20px;
+	margin: 0 5px 20px;
 }
 
 .catalog__product:hover {		
@@ -52,7 +51,7 @@
 }
 
 .catalog__product--name {
-	font-size: 13px;
+	font-size: 15px;
 	font-weight: bold;
 	margin: 2px 0;
 	text-transform: uppercase;	
@@ -76,14 +75,14 @@
 .catalog__product--promo-price {
 	text-align: center;	
 	font-family: 'Inconsolata', monospace;
-	font-size: 12px;	
+	font-size: 15px;	
 	text-decoration: line-through;
 }
 
 .catalog__product--price {
 	text-align: center;	
 	font-family: 'Inconsolata', monospace;
-	font-size: 12px;
+	font-size: 15px;
 	font-weight: bold;
 }
 

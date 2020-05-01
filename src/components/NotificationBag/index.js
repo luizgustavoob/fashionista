@@ -9,7 +9,7 @@ const NotificationBag = ( {bagLength} ) => {
 }
 
 const mapStateToProps = state => {
-  return { bagLength: state.bag.length };
+  return { bagLength: state.bag.reduce((acc, prod) => acc + prod.quantity, 0) };
 }
 
 export default connect(mapStateToProps)(NotificationBag);

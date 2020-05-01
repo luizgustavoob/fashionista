@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
-import NotificationBag from './../NotificationBag';
+import NotificationBag from '../NotificationBag';
 import './styles.css';
 
 const Navbar = ({ onOpenSearch, onOpenBag }) => {

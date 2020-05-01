@@ -1,14 +1,14 @@
 .product {
   display: grid;
   grid-template-columns: 35% 65%;
-  margin: 5px 10px 0 10px;
+  margin: 5px 5px 20px 5px;
 	padding: 0;
   width: 100%;
 }
 
 .product__image {
   width: 100%;
-	height: 75vh;
+	height: 90vh;
 	background-color: #fff;
 	border-radius: 8px;
 	overflow: hidden;
@@ -52,6 +52,14 @@
   font-family: 'Inconsolata', monospace;
 }
 
+.product__price--installments {
+  margin-left: 10px;
+  font-size: 15px;
+  padding: 3px;
+  color: cadetblue;
+  font-family: 'Inconsolata', monospace;
+}
+
 .product__size {
   margin: 13px 0 0 0;
 }
@@ -63,7 +71,43 @@
   color: cadetblue;
 }
 
-@media screen and (max-width: 450px) {
+.product__add-bag {
+  background-color: black;
+  color: white;
+  font-weight: bold;
+  padding: 12px;
+  width: 20vw;
+  border-radius: 5px;
+  margin-top: 10px; 
+  outline: none;
+}
+
+.product__add-bag:active {
+  box-shadow: 0 3px gray;
+  transform: translateY(2px);
+}
+
+.product__size--select-button {
+  background: transparent;
+  color: black;
+  border: .1rem solid #dfdfdf;
+  font-weight: bold;
+  border-radius: 4px;  
+  margin-right: 5px;
+  padding: 10px;
+}
+
+.product__size--button-selected {
+  background: black;
+  border: .1rem solid black;
+  color: white;
+  font-weight: bold;
+  border-radius: 4px;  
+  margin-right: 5px;
+  padding: 10px;
+}
+
+@media screen and (max-width: 650px) {
   .product {
     display: flex;
     flex-direction: column;
@@ -73,12 +117,16 @@
   .product__info {
     margin-top: 10px;
   }
+
+  .product__add-bag {
+    width: 100%;
+    margin-bottom: 10px;
+  }
 }
 
-@media screen and (min-width: 450px) and (max-width: 1050px) {
+@media screen and (min-width: 650px) and (max-width: 1050px) {
   .product {
     display: grid;
     grid-template-columns: 50% 50%;
-    margin: 5px 10px 0 10px;
   }  
 }

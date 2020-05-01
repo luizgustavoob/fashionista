@@ -9,11 +9,11 @@
 }
 
 .header .container {  
-  width: calc(70% - 20px);
+  width: calc(80% - 10px);
 }
 
 @media screen and (max-width: 700px) {
   .header .container {
-    width: calc(90% - 20px);
+    width: calc(90% - 10px);
   }
 }

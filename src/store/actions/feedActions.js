@@ -1,4 +1,4 @@
-import { fetchProducts } from './../../services/api';
+import { fetchProducts } from '../../services/api';
 
 export const SET_CATALOG = 'SET_CATALOG';
 
