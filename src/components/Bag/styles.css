@@ -24,7 +24,7 @@
 }
 
 .bag__product {
-  /*border: 1px solid lightgray;*/
+  border: 0.5px solid #99ecdd;
   display: flex;
   flex-direction: row;
   background-color: white;
@@ -36,6 +36,10 @@
 
 .bag__product:not(:first-child) {
   margin-top: 5px;
+}
+
+.bag__product:last-child {
+  margin-bottom: 5px;
 }
 
 .bag__product--remove { 
