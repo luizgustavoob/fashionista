@@ -53,8 +53,7 @@ const Product = ( {product, addBag} ) => {
   return (
     <section className="product">      
       <figure className="product__image">
-        <img src={product.image}
-         className="product__image--img" alt={product.name} title={product.name}/>
+        <img src={product.image} className="product__image--img" alt={product.name} title={product.name} />
         { 
           product.on_sale &&
           <Discount discountPercentage={product.discount_percentage} />
@@ -69,14 +68,12 @@ const Product = ( {product, addBag} ) => {
         </div>
         <div className="product__size">
           <p className="product__size--text">Escolha o tamanho:</p>
-          {
-            product.sizes.filter(size => size.available).map(size => (
-              <button key={size.size} id={size.size} type="button" className="product__size--select-button" 
-                onClick={() => handleSelectedSize(size)}>
-                {size.size}
-              </button>
-            ))
-          }
+          {product.sizes.filter(size => size.available).map(size => (
+            <button key={size.size} id={size.size} type="button" className="product__size--select-button" 
+              onClick={() => handleSelectedSize(size)}>
+              {size.size}
+            </button>
+          ))}
         </div>
         <button type="button" className="product__add-bag" onClick={() => handleAddBag(product)}>
           Adicionar à Sacola

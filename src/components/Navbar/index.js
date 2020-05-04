@@ -1,9 +1,15 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import NotificationBag from '../NotificationBag';
+import { toggleMenu } from '../../store/actions/toggleActions';
 import './styles.css';
 
-const Navbar = ({ onOpenSearch, onOpenBag }) => {
+const Navbar = ( {toggleMenu} ) => {
+  
+  const handleMenuSearch = () => toggleMenu(document.querySelector('#search'));
+  const handleMenuBag = () => toggleMenu(document.querySelector('#bag'));
+
   return (
     <nav className="container navbar">
       <Link to="/">
@@ -11,13 +17,13 @@ const Navbar = ({ onOpenSearch, onOpenBag }) => {
       </Link>      
 
       <ul className="navbar__actions">
-        <li className="navbar__action-item" onClick={onOpenSearch}>
+        <li className="navbar__action-item" onClick={handleMenuSearch}>
           <button type="button" className="navbar__action-item--button">
             <i className="fa fa-search" />            
           </button>
         </li>
         
-        <li className="navbar__action-item" onClick={onOpenBag}>
+        <li className="navbar__action-item" onClick={handleMenuBag}>
           <button type="button" className="navbar__action-item--button">
             <i className="fa fa-shopping-bag" />            
           </button>
@@ -27,6 +33,10 @@ const Navbar = ({ onOpenSearch, onOpenBag }) => {
       </ul>
     </nav>
   );
-}
+};
 
-export default Navbar;
+const mapStateToProps = state => {
+  return state;
+};
+
+export default connect(mapStateToProps, {toggleMenu})(Navbar);

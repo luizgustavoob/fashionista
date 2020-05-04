@@ -1,6 +1,7 @@
 import { SET_CATALOG } from './actions/feedActions';
 import { SET_PRODUCT_DETAIL } from './actions/productActions';
-import { ADD_BAG, REMOVE_BAG } from './actions/bagActions';
+import { ADD_BAG, REMOVE_BAG, applyAddBag, applyRemoveBag } from './actions/bagActions';
+import { SET_TOGGLE, applyToggleMenu } from './actions/toggleActions';
 
 const INITIAL_STATE = {
   catalog: [],
@@ -19,26 +20,14 @@ const appReducer =  (state = INITIAL_STATE, action) => {
       return { ...state, productDetail: payload };
 
     case ADD_BAG:
-      let updatedBag = [...state.bag];
-      const index = updatedBag.findIndex(prod => prod.sku === payload.sku && prod.size === payload.size);
-      if (index >= 0) {
-        updatedBag[index].quantity += 1;
-        return { ...state, bag: updatedBag };
-      } else {
-        return { ...state, bag: [...state.bag, payload] };
-      }
+      return applyAddBag(state, payload);
     
     case REMOVE_BAG:
-      const prod = state.bag.find(p => p.sku === payload.sku && p.size === payload.size);
+      return applyRemoveBag(state, payload.sku, payload.size, payload.quantity);
 
-      if ((prod && prod.quantity === payload.quantity) || !payload.quantity) {
-        return { ...state, bag: state.bag.filter(p => p.sku !== payload.sku) };
-      } else {
-        let updatedBag = [...state.bag];
-        const index = updatedBag.findIndex(prod => prod.sku === payload.sku && prod.size === payload.size);
-        updatedBag[index].quantity -= 1;
-        return { ...state, bag: updatedBag };
-      }
+    case SET_TOGGLE:
+      applyToggleMenu(payload);
+      return { ...state };
       
     default:
       return state;
