@@ -1,14 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { toast } from 'react-toastify';
 import { addBag } from '../../store/actions/bagActions';
 import MoneyFormat from '../../components/MoneyFormat';
 import Discount from '../../components/Discount';
+import { fetchProductById } from '../../services/api';
 import './styles.css';
 
-const Product = ( {product, addBag} ) => {
+const Product = ( {addBag} ) => {
   
-  const [selectedSize, setSelectedSize] = useState(''); 
+  const params = useParams();
+  const [product, setProduct] = useState({});
+  const [selectedSize, setSelectedSize] = useState('');
+
+  useEffect(() => {
+    const name = params.name;
+    const codeColor = name.substring(name.indexOf('_') + 1);
+    fetchProductById(codeColor).then(res => setProduct(res));
+  }, [params]);
 
   const handleAddBag = product => {
     if (!selectedSize) {
@@ -51,6 +61,7 @@ const Product = ( {product, addBag} ) => {
   };
 
   return (
+    !product.code_color ? null :
     <section className="product">      
       <figure className="product__image">
         <img src={product.image} className="product__image--img" alt={product.name} title={product.name} />
@@ -79,12 +90,12 @@ const Product = ( {product, addBag} ) => {
           Adicionar à Sacola
         </button>
       </div>
-    </section>
+    </section>   
   );
 }
 
 const mapStateToProps = state => {
-  return { product: state.productDetail };
+  return state;
 }
 
 export default connect(mapStateToProps, {addBag})(Product);

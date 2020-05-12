@@ -1,10 +1,10 @@
 import { fetchProducts } from '../../services/api';
 
-export const SET_CATALOG = 'SET_CATALOG';
+export const GET_CATALOG = 'GET_CATALOG';
 
 export const fetchCatalog = () => {
   return {
-    type: SET_CATALOG,
+    type: GET_CATALOG,
     payload: fetchProducts()
   };
 }

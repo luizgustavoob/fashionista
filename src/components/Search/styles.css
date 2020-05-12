@@ -1,6 +1,5 @@
 .toggle__search-input {
-  width: calc(100% - 10px);
-  border-radius: 3px;
+  width: calc(100% - 10px);  
   height: 30px;
   margin: 5px;
   padding: 5px;

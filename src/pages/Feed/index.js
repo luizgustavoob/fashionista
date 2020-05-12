@@ -1,13 +1,12 @@
 import React, { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { fetchCatalog } from '../../store/actions/feedActions';
+import { fetchCatalog } from '../../store/actions/catalogActions';
 import FeedProduct from '../../components/FeedProduct';
-import { setProductDetail } from '../../store/actions/productActions';
 import { formatProductRoute } from '../../routes/routesUtils';
 import './styles.css';
 
-const Feed = ( {catalog, fetchCatalog, setProductDetail} ) => {
+const Feed = ( {catalog, fetchCatalog} ) => {
 
   const history = useHistory();
   
@@ -16,7 +15,6 @@ const Feed = ( {catalog, fetchCatalog, setProductDetail} ) => {
   }, [fetchCatalog]);
 
   const handleProduct = product => {
-    setProductDetail(product);
     const route =  formatProductRoute(product);
     history.push(`/product/${route}`);
   };
@@ -39,4 +37,4 @@ const mapStateToProps = state => {
   return { catalog: state.catalog };
 }
 
-export default connect(mapStateToProps, {fetchCatalog, setProductDetail})(Feed);
+export default connect(mapStateToProps, {fetchCatalog})(Feed);
