@@ -1,7 +1,18 @@
-.toggle__search-input {
-  width: calc(100% - 10px);  
-  height: 30px;
+.search__input {
+  width: calc(100% - 10px);
+  height: 40px;
   margin: 5px;
-  padding: 5px;
-  overflow: hidden;
+  padding: 10px;
+  position: relative;
+  border-radius: 3px;
+  border: 1px solid lightcoral;
+}
+
+.search__msg--not-found {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 15px;
+  color: #000;
+  font-weight: 500;
 }
