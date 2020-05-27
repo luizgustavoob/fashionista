@@ -4,7 +4,7 @@ export const fetchProducts = () => {
   return fetch(API_URL).then(res => res.json());
 }
 
-export const fetchProductById = async codeColor => {
+export const fetchOneProduct = async codeColor => {
   const products = await fetchProducts();
   return products.find(product => product.code_color === codeColor);
 };

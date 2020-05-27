@@ -5,7 +5,7 @@ import { toast } from 'react-toastify';
 import { addBag } from '../../store/actions/bagActions';
 import MoneyFormat from '../../components/MoneyFormat';
 import Discount from '../../components/Discount';
-import { fetchProductById } from '../../services/api';
+import { fetchOneProduct } from '../../services/api';
 import './styles.css';
 
 const Product = ( {addBag} ) => {
@@ -17,7 +17,7 @@ const Product = ( {addBag} ) => {
   useEffect(() => {
     const name = params.name;
     const codeColor = name.substring(name.indexOf('_') + 1);
-    fetchProductById(codeColor).then(res => setProduct(res));
+    fetchOneProduct(codeColor).then(res => setProduct(res));
   }, [params]);
 
   const handleAddBag = product => {
@@ -64,11 +64,14 @@ const Product = ( {addBag} ) => {
     !product.code_color ? null :
     <section className="product">      
       <figure className="product__image">
-        <img src={product.image} className="product__image--img" alt={product.name} title={product.name} />
+        <img 
+          className="product__image--img" 
+          src={product.image ? product.image : "https://via.placeholder.com/470x594/FFFFFF/?text=Imagem+Indisponível"} 
+          alt={product.name ? product.name : "Imagem indisponível"}
+          title={product.name ? product.name : "Imagem indisponível"} />
         { 
-          product.on_sale &&
-          <Discount discountPercentage={product.discount_percentage} />
-        }
+          product.on_sale && <Discount discountPercentage={product.discount_percentage} />
+        }          
       </figure>
 
       <div className="product__info">        
