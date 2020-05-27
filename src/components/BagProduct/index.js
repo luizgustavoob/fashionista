@@ -22,7 +22,11 @@ const BagProduct = ( {product, state, addBag, removeBag} ) => {
   return (
     <Fragment>
       <figure className="bag__product--figure">
-        <img className="bag__product--img" src={product.image} alt={product.name} title={product.name}/>
+        <img 
+          className="bag__product--img" 
+          src={product.image ? product.image : "https://via.placeholder.com/270x194/FFFFFF/?text=Imagem+Indisponível"} 
+          alt={product.name ? product.name : "Imagem indisponível"}
+          title={product.name ? product.name : "Imagem indisponível"} />
         <button type="button" className="bag__product--remove" onClick={() => handleRemoveProduct()}>
           Remover
         </button>

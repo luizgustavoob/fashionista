@@ -8,11 +8,13 @@ const FeedProduct = ({product}) => {
   return (
     <Fragment>
       <figure className="catalog__product--figure">
-        <img src={product.image}
-          className="catalog__product--img" alt={product.name} title={product.name}/>
-        { 
-          product.on_sale &&
-          <Discount discountPercentage={product.discount_percentage} />
+        <img 
+          className="product__image--img" 
+          src={product.image ? product.image : "https://via.placeholder.com/470x594/FFFFFF/?text=Imagem+Indisponível"} 
+          alt={product.name ? product.name : "Imagem indisponível"}
+          title={product.name ? product.name : "Imagem indisponível"} />
+        {
+          product.on_sale && <Discount discountPercentage={product.discount_percentage} />
         }
       </figure>
       <div className="catalog__product--info">
