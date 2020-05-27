@@ -6,7 +6,7 @@ import './styles.css';
 
 const Search = ( {catalog, toggleMenu, fetchCatalog} ) => {
 
-  const [filtered, setFiltered] = useState([]);
+  const [productsFiltered, setProductsFiltered] = useState([]);
 
   useEffect(() => {
     fetchCatalog();
@@ -14,12 +14,17 @@ const Search = ( {catalog, toggleMenu, fetchCatalog} ) => {
 
   const handleMenuSearch = () => toggleMenu(document.querySelector('#search'));
 
-  const handleChange = text => {
-    setTimeout(() => {
-      console.log(text);
-      //const results = catalog.filter(prod => prod.name.toLowerCase().contains(text.toLowerCase()));
-      //setFiltered(results);
-    }, 1000);
+  let timeOut = null;
+
+  const handleKeyUp = text => {
+    clearInterval(timeOut);
+    timeOut = setTimeout(() => {
+      let results = [];
+      if (text) {
+        results = catalog.filter(prod => prod.name.toLowerCase().includes(text.toLowerCase()));
+      }
+      setProductsFiltered(results);
+    }, 600);    
   };
 
   return (    
@@ -32,13 +37,13 @@ const Search = ( {catalog, toggleMenu, fetchCatalog} ) => {
       </header>
 
       <aside className="toggle__content">
-        <input type="text" className="toggle__search-input" placeholder="Digite o nome produto" onChange={e => handleChange(e.target.value)}/>
+        <input type="text" className="search__input" placeholder="Digite o nome produto" onKeyUp={e => handleKeyUp(e.target.value)}/>
         { 
-          filtered.length ?         
+          productsFiltered.length ?         
           <div>
             <ul>
               {
-                filtered.map(prod => (
+                productsFiltered.map(prod => (
                   <li key={prod.code_color}>
                     { prod.name }
                   </li>
@@ -47,7 +52,7 @@ const Search = ( {catalog, toggleMenu, fetchCatalog} ) => {
             </ul>
           </div>
           :
-          <span>Nenhum resultado para a pesquisa.</span>
+          <span className="search__msg--not-found">Nenhum resultado para a pesquisa.</span>
         }
       </aside>
     </div>
