@@ -22,10 +22,6 @@
   margin-top: 5px;
 }
 
-.bag__product:last-child {
-  margin-bottom: 5px;
-}
-
 .bag__product--remove { 
   justify-content: center;   
   font-weight: bold;

@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { toggleMenu } from '../../store/actions/toggleActions';
 import { fetchCatalog } from '../../store/actions/catalogActions';
+import SearchProduct from './../SearchProduct';
+import { formatProductRoute } from '../../routes/routesUtils';
 import './styles.css';
 
 const Search = ( {catalog, toggleMenu, fetchCatalog} ) => {
 
+  const history = useHistory();
   const [productsFiltered, setProductsFiltered] = useState([]);
 
   useEffect(() => {
@@ -16,7 +20,7 @@ const Search = ( {catalog, toggleMenu, fetchCatalog} ) => {
 
   let timeOut = null;
 
-  const handleKeyUp = text => {
+  const handleKeyUpSearch = text => {
     clearInterval(timeOut);
     timeOut = setTimeout(() => {
       let results = [];
@@ -24,8 +28,14 @@ const Search = ( {catalog, toggleMenu, fetchCatalog} ) => {
         results = catalog.filter(prod => prod.name.toLowerCase().includes(text.toLowerCase()));
       }
       setProductsFiltered(results);
-    }, 600);    
+    }, 500);    
   };
+
+  const handleProduct = product => {
+    toggleMenu(document.querySelector('#search'));
+    const route =  formatProductRoute(product);
+    history.push(`/product/${route}`);
+  }
 
   return (    
     <div id="search" className="toggle__menu">
@@ -36,23 +46,22 @@ const Search = ( {catalog, toggleMenu, fetchCatalog} ) => {
         <p className="toggle__header--title">Buscar Produtos</p>
       </header>
 
-      <aside className="toggle__content">
-        <input type="text" className="search__input" placeholder="Digite o nome produto" onKeyUp={e => handleKeyUp(e.target.value)}/>
+      <aside className="search__content">
+        <input type="text" className="search__input" placeholder="Digite o nome produto" 
+          onKeyUp={e => handleKeyUpSearch(e.target.value)}/>
         { 
-          productsFiltered.length ?         
-          <div>
-            <ul>
-              {
-                productsFiltered.map(prod => (
-                  <li key={prod.code_color}>
-                    { prod.name }
-                  </li>
-                ))
-              }
-            </ul>
-          </div>
+          productsFiltered.length ?
+          <ul className="search__products">
+            {
+              productsFiltered.map(prod => (
+                <li key={prod.code_color} className="search__product" onClick={(() => handleProduct(prod))}>
+                  <SearchProduct product={prod}/>
+                </li>
+              ))
+            }
+          </ul>          
           :
-          <span className="search__msg--not-found">Nenhum resultado para a pesquisa.</span>
+          <span className="search__msg--not-found">Nenhum resultado para a pesquisa :(</span>
         }
       </aside>
     </div>
