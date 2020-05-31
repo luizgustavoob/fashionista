@@ -21,8 +21,7 @@ const appReducer =  (state = INITIAL_STATE, action) => {
       return applyRemoveBag(state, payload.sku, payload.size, payload.quantity);
 
     case SET_TOGGLE:
-      applyToggleMenu(payload);
-      return { ...state };
+      return applyToggleMenu(state, payload);
       
     default:
       return state;

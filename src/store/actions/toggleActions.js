@@ -7,7 +7,7 @@ export const toggleMenu = target => {
   };
 };
 
-export const applyToggleMenu = payload => {
+export const applyToggleMenu = (state, payload) => {
   const target = payload.target;
 
   if (target.classList.contains('toggle__menu--visible')) {
@@ -21,4 +21,6 @@ export const applyToggleMenu = payload => {
   } else {
     document.body.classList.add('in-background');
   }
+
+  return state;
 };
