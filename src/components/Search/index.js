@@ -61,7 +61,7 @@ const Search = ( {catalog, toggleMenu, fetchCatalog} ) => {
             }
           </ul>          
           :
-          <span className="search__msg--not-found">Nenhum resultado para a pesquisa :(</span>
+          <span className="search__msg--not-found">Nenhum resultado para a pesquisa</span>
         }
       </aside>
     </div>
