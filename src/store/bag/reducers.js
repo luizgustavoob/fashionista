@@ -13,7 +13,7 @@ const addBagReducer = (state, payload) => {
 const removeBagReducer = (state, payload) => {
   const { sku, quantity } = payload;
   const prod = state.bag.find(p => p.sku === sku);
-
+  
   if (prod && (prod.quantity === quantity || !quantity)) {
     return { ...state, bag: state.bag.filter(p => p.sku !== sku)};
   } else {

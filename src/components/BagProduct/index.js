@@ -3,9 +3,10 @@ import { connect } from 'react-redux';
 import { addBag, removeBag } from '../../store/bag/actions';
 import './styles.css';
 
-const BagProduct = ( {product, state, addBag, removeBag} ) => {
+const BagProduct = ({ product, state, addBag, removeBag }) => {
 
-  const handleRemoveProduct = (quantity = 0) => removeBag(product.sku, product.size, quantity);
+  const handleRemoveProduct = (quantity = 0) => 
+    removeBag({ sku: product.sku, size: product.size, quantity });
 
   const handleAddProduct = () => {
     const productToBag = {
@@ -16,6 +17,7 @@ const BagProduct = ( {product, state, addBag, removeBag} ) => {
       image: product.image,
       installments: product.installments
     };
+
     addBag(productToBag);
   };
 

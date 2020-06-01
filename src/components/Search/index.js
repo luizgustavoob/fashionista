@@ -7,7 +7,7 @@ import { fetchCatalog } from '../../store/catalog/actions';
 import { formatProductRoute } from '../../routes/utils';
 import './styles.css';
 
-const Search = ({ catalog, toggleMenu, fetchCatalog })   => {
+const Search = ({ catalog, toggleMenu, fetchCatalog }) => {
 
   const history = useHistory();
   const [productsFiltered, setProductsFiltered] = useState([]);

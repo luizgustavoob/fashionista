@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import './styles.css';
 
-const NotificationBag = ( {bagLength} ) => {
+const NotificationBag = ({ bagLength }) => {
   return (
     <span className="notification">{bagLength}</span>
   );

@@ -1,5 +1,5 @@
 const toggleMenuReducer = (state, payload) => {
-  const target = payload.target;
+  const { target } = payload;
 
   if (target.classList.contains('toggle__menu--visible')) {
     target.classList.remove('toggle__menu--visible');

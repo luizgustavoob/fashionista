@@ -5,7 +5,7 @@ import BagProduct from '../../components/BagProduct';
 import { toggleMenu } from '../../store/toggle-menu/actions';
 import './styles.css';
 
-const Bag = ( {bag, subTotal, toggleMenu} ) => {  
+const Bag = ({ bag, subTotal, toggleMenu }) => {  
 
   const handleMenuBag = () => toggleMenu(document.querySelector('#bag'));
 
@@ -20,11 +20,13 @@ const Bag = ( {bag, subTotal, toggleMenu} ) => {
 
       <aside className="toggle__content">
         <ul className="bag__products">
-          {bag.map(product => (
-            <li key={product.sku} className="bag__product">
-              <BagProduct product={product} />
-            </li>
-          ))}
+          {
+            bag.map(product => (
+              <li key={product.sku} className="bag__product">
+                <BagProduct product={product} />
+              </li>
+            ))
+          }
         </ul>
       </aside>
       

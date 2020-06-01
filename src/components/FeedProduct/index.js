@@ -3,7 +3,7 @@ import Discount from '../Discount';
 import MoneyFormat from '../MoneyFormat';
 import './styles.css';
 
-const FeedProduct = ({product}) => {
+const FeedProduct = ({ product }) => {
   
   return (
     <Fragment>

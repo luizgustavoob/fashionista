@@ -5,7 +5,7 @@ import NotificationBag from '../NotificationBag';
 import { toggleMenu } from '../../store/toggle-menu/actions';
 import './styles.css';
 
-const Navbar = ( {toggleMenu} ) => {
+const Navbar = ({ toggleMenu }) => {
   
   const handleMenuSearch = () => toggleMenu(document.querySelector('#search'));
   const handleMenuBag = () => toggleMenu(document.querySelector('#bag'));

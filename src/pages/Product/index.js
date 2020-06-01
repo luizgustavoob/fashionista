@@ -8,17 +8,16 @@ import Discount from '../../components/Discount';
 import { fetchOneProduct } from '../../services/api';
 import './styles.css';
 
-const Product = ( {addBag} ) => {
+const Product = ({ addBag }) => {
   
-  const params = useParams();
+  const { name } = useParams();
   const [product, setProduct] = useState({});
   const [selectedSize, setSelectedSize] = useState('');
 
   useEffect(() => {
-    const name = params.name;
     const codeColor = name.substring(name.indexOf('_') + 1);
-    fetchOneProduct(codeColor).then(res => setProduct(res));
-  }, [params]);
+    fetchOneProduct(codeColor).then(setProduct);
+  }, [name]);
 
   const handleAddBag = product => {
     if (!selectedSize) {
@@ -82,12 +81,14 @@ const Product = ( {addBag} ) => {
         </div>
         <div className="product__size">
           <p className="product__size--text">Escolha o tamanho:</p>
-          {product.sizes.filter(size => size.available).map(size => (
-            <button key={size.size} id={size.size} type="button" className="product__size--select-button" 
-              onClick={() => handleSelectedSize(size)}>
-              {size.size}
-            </button>
-          ))}
+          {
+            product.sizes.filter(size => size.available).map(size => (
+              <button key={size.size} id={size.size} type="button" className="product__size--select-button" 
+                onClick={() => handleSelectedSize(size)}>
+                {size.size}
+              </button>
+            ))
+          }
         </div>
         <button type="button" className="product__add-bag" onClick={() => handleAddBag(product)}>
           Adicionar à Sacola

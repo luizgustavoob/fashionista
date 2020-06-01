@@ -6,7 +6,7 @@ import { fetchCatalog } from '../../store/catalog/actions';
 import { formatProductRoute } from '../../routes/utils';
 import './styles.css';
 
-const Feed = ( {catalog, fetchCatalog} ) => {
+const Feed = ({ catalog, fetchCatalog }) => {
 
   const history = useHistory();
   
