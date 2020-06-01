@@ -1,13 +1,4 @@
-export const SET_TOGGLE = 'SET_TOGGLE';
-
-export const toggleMenu = target => {
-  return {
-    type: SET_TOGGLE,
-    payload: { target }
-  };
-};
-
-export const applyToggleMenu = (state, payload) => {
+const toggleMenuReducer = (state, payload) => {
   const target = payload.target;
 
   if (target.classList.contains('toggle__menu--visible')) {
@@ -23,4 +14,8 @@ export const applyToggleMenu = (state, payload) => {
   }
 
   return state;
+};
+
+export {
+  toggleMenuReducer
 };

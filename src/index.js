@@ -3,9 +3,9 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { ToastContainer } from 'react-toastify';
-import store from './store/store';
-import App from './App';
 import Routes from './routes/routes';
+import App from './App';
+import store from './store/store';
 import 'react-toastify/dist/ReactToastify.min.css'; 
 import './styles/reset.css';
 

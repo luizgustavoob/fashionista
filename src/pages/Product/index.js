@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { toast } from 'react-toastify';
-import { addBag } from '../../store/actions/bagActions';
+import { addBag } from '../../store/bag/actions';
 import MoneyFormat from '../../components/MoneyFormat';
 import Discount from '../../components/Discount';
 import { fetchOneProduct } from '../../services/api';

@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { fetchCatalog } from '../../store/actions/catalogActions';
 import FeedProduct from '../../components/FeedProduct';
-import { formatProductRoute } from '../../routes/routesUtils';
+import { fetchCatalog } from '../../store/catalog/actions';
+import { formatProductRoute } from '../../routes/utils';
 import './styles.css';
 
 const Feed = ( {catalog, fetchCatalog} ) => {

@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { toggleMenu } from '../../store/actions/toggleActions';
-import { fetchCatalog } from '../../store/actions/catalogActions';
 import SearchProduct from './../SearchProduct';
-import { formatProductRoute } from '../../routes/routesUtils';
+import { toggleMenu } from '../../store/toggle-menu/actions';
+import { fetchCatalog } from '../../store/catalog/actions';
+import { formatProductRoute } from '../../routes/utils';
 import './styles.css';
 
-const Search = ( {catalog, toggleMenu, fetchCatalog} ) => {
+const Search = ({ catalog, toggleMenu, fetchCatalog })   => {
 
   const history = useHistory();
   const [productsFiltered, setProductsFiltered] = useState([]);

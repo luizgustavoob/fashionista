@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
-import { addBag, removeBag } from '../../store/actions/bagActions';
+import { addBag, removeBag } from '../../store/bag/actions';
 import './styles.css';
 
 const BagProduct = ( {product, state, addBag, removeBag} ) => {

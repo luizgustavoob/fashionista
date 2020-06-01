@@ -1,6 +1,11 @@
-import { GET_CATALOG } from './actions/catalogActions';
-import { ADD_BAG, REMOVE_BAG, applyAddBag, applyRemoveBag } from './actions/bagActions';
-import { SET_TOGGLE, applyToggleMenu } from './actions/toggleActions';
+import { SET_TOGGLE } from './toggle-menu/actions';
+import { toggleMenuReducer } from './toggle-menu/reducers';
+
+import { GET_CATALOG } from './catalog/actions';
+import { fetchCatalogReducer } from './catalog/reducers';
+
+import { ADD_BAG, REMOVE_BAG } from './bag/actions';
+import { addBagReducer, removeBagReducer } from './bag/reducers';
 
 const INITIAL_STATE = {
   catalog: [],
@@ -12,16 +17,16 @@ const appReducer =  (state = INITIAL_STATE, action) => {
 
   switch (type) {
     case GET_CATALOG:
-      return { ...state, catalog: payload };
+      return fetchCatalogReducer(state, payload);
 
     case ADD_BAG:
-      return applyAddBag(state, payload);
+      return addBagReducer(state, payload);
     
     case REMOVE_BAG:
-      return applyRemoveBag(state, payload.sku, payload.size, payload.quantity);
+      return removeBagReducer(state, payload);
 
     case SET_TOGGLE:
-      return applyToggleMenu(state, payload);
+      return toggleMenuReducer(state, payload);
       
     default:
       return state;

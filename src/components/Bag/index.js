@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import NumberFormat from 'react-number-format';
 import BagProduct from '../../components/BagProduct';
-import { toggleMenu } from '../../store/actions/toggleActions';
+import { toggleMenu } from '../../store/toggle-menu/actions';
 import './styles.css';
 
 const Bag = ( {bag, subTotal, toggleMenu} ) => {  

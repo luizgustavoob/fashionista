@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import NotificationBag from '../NotificationBag';
-import { toggleMenu } from '../../store/actions/toggleActions';
+import { toggleMenu } from '../../store/toggle-menu/actions';
 import './styles.css';
 
 const Navbar = ( {toggleMenu} ) => {
