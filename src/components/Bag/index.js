@@ -19,15 +19,20 @@ const Bag = ({ bag, subTotal, toggleMenu }) => {
       </header>
 
       <aside className="toggle__content">
-        <ul className="bag__products">
-          {
-            bag.map(product => (
-              <li key={product.sku} className="bag__product">
-                <BagProduct product={product} />
-              </li>
-            ))
-          }
-        </ul>
+        { 
+          bag.length ? 
+          <ul className="bag__products">
+            {
+              bag.map(product => (
+                <li key={product.sku} className="bag__product">
+                  <BagProduct product={product} />
+                </li>
+              ))
+            }
+          </ul>
+          : 
+          <span className="bag__empty">Nenhum produto na sacola :(</span>
+        }        
       </aside>
       
       <footer className="bag__footer">
