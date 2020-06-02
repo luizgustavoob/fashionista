@@ -1,4 +1,4 @@
-const SET_TOGGLE = 'SET_TOGGLE';
+import { SET_TOGGLE } from './types';
 
 const toggleMenu = target => {
   return {
@@ -8,6 +8,5 @@ const toggleMenu = target => {
 };
 
 export {
-  SET_TOGGLE,
   toggleMenu
 };

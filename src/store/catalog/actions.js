@@ -1,6 +1,5 @@
 import { fetchProducts } from '../../services/api';
-
-const GET_CATALOG = 'GET_CATALOG';
+import { GET_CATALOG } from './types';
 
 const fetchCatalog = () => {
   return {
@@ -10,6 +9,5 @@ const fetchCatalog = () => {
 };
 
 export {
-  GET_CATALOG,
   fetchCatalog
 };

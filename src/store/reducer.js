@@ -1,10 +1,10 @@
-import { SET_TOGGLE } from './toggle-menu/actions';
+import { SET_TOGGLE } from './toggle-menu/types';
 import { toggleMenuReducer } from './toggle-menu/reducers';
 
-import { GET_CATALOG } from './catalog/actions';
+import { GET_CATALOG } from './catalog/types';
 import { fetchCatalogReducer } from './catalog/reducers';
 
-import { ADD_BAG, REMOVE_BAG } from './bag/actions';
+import { ADD_BAG, REMOVE_BAG } from './bag/types';
 import { addBagReducer, removeBagReducer } from './bag/reducers';
 
 const INITIAL_STATE = {

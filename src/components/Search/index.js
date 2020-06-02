@@ -31,7 +31,7 @@ const Search = ({ catalog, toggleMenu, fetchCatalog }) => {
     }, 500);    
   };
 
-  const handleProduct = product => {
+  const handleProduct = product => {    
     toggleMenu(document.querySelector('#search'));
     const route =  formatProductRoute(product);
     history.push(`/product/${route}`);
@@ -48,7 +48,7 @@ const Search = ({ catalog, toggleMenu, fetchCatalog }) => {
 
       <aside className="search__content">
         <input type="text" className="search__input" placeholder="Digite o nome produto" 
-          onKeyUp={e => handleKeyUpSearch(e.target.value)}/>
+          onKeyUp={e => handleKeyUpSearch(e.target.value)} />
         { 
           productsFiltered.length ?
           <ul className="search__products">
