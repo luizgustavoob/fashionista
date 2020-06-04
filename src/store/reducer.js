@@ -7,15 +7,12 @@ import { fetchCatalogReducer } from './catalog/reducers';
 import { ADD_BAG, REMOVE_BAG } from './bag/types';
 import { addBagReducer, removeBagReducer } from './bag/reducers';
 
-import { getStorage } from '../services/storage';
-
 const INITIAL_STATE = {
   catalog: [],
-  bag: getStorage('bag').items || []
+  bag: []
 };
 
 const appReducer =  (state = INITIAL_STATE, action) => {
-  console.log('inicial', state)
   const { type, payload } = action;
 
   switch (type) {

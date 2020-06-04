@@ -1,5 +1,3 @@
-import { setStorage } from '../../services/storage';
-
 const addBagReducer = (state, payload) => {
   const index = state.bag.findIndex(prod => prod.sku === payload.sku);
   let bag = [];
@@ -11,7 +9,6 @@ const addBagReducer = (state, payload) => {
     bag = [...state.bag, payload];
   }
 
-  setStorage('bag', bag);
   return { ...state, bag };
 };
 
@@ -27,8 +24,7 @@ const removeBagReducer = (state, payload) => {
     const index = bag.findIndex(prod => prod.sku === sku);
     bag[index].quantity -= 1;
   }
-
-  setStorage('bag', bag);
+  
   return { ...state, bag };
 };
 
