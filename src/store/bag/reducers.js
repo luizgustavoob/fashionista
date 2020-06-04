@@ -1,27 +1,35 @@
+import { setStorage } from '../../services/storage';
+
 const addBagReducer = (state, payload) => {
-  let updatedBag = [...state.bag];
-  const index = updatedBag.findIndex(prod => prod.sku === payload.sku);
+  const index = state.bag.findIndex(prod => prod.sku === payload.sku);
+  let bag = [];
   
   if (index >= 0) {
-    updatedBag[index].quantity += 1;
-    return { ...state, bag: updatedBag };
+    bag = [...state.bag];
+    bag[index].quantity += 1;
   } else {
-    return { ...state, bag: [...state.bag, payload] };
+    bag = [...state.bag, payload];
   }
+
+  setStorage('bag', bag);
+  return { ...state, bag };
 };
 
 const removeBagReducer = (state, payload) => {
   const { sku, quantity } = payload;
   const prod = state.bag.find(p => p.sku === sku);
+  let bag = [];
   
   if (prod && (prod.quantity === quantity || !quantity)) {
-    return { ...state, bag: state.bag.filter(p => p.sku !== sku)};
+    bag = state.bag.filter(p => p.sku !== sku);
   } else {
-    let updatedBag = [...state.bag];
-    const index = updatedBag.findIndex(prod => prod.sku === sku);
-    updatedBag[index].quantity -= 1;
-    return { ...state, bag: updatedBag };
+    bag = [...state.bag];
+    const index = bag.findIndex(prod => prod.sku === sku);
+    bag[index].quantity -= 1;
   }
+
+  setStorage('bag', bag);
+  return { ...state, bag };
 };
 
 export {
