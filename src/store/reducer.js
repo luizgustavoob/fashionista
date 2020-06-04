@@ -11,10 +11,11 @@ import { getStorage } from '../services/storage';
 
 const INITIAL_STATE = {
   catalog: [],
-  bag: getStorage('bag')
+  bag: getStorage('bag').items || []
 };
 
 const appReducer =  (state = INITIAL_STATE, action) => {
+  console.log('inicial', state)
   const { type, payload } = action;
 
   switch (type) {
