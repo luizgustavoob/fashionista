@@ -9,6 +9,7 @@ const addBagReducer = (state, payload) => {
     bag = [...state.bag, payload];
   }
 
+  window.localStorage.setItem('bag', JSON.stringify(bag));
   return { ...state, bag };
 };
 
@@ -25,6 +26,7 @@ const removeBagReducer = (state, payload) => {
     bag[index].quantity -= 1;
   }
   
+  window.localStorage.setItem('bag', JSON.stringify(bag));
   return { ...state, bag };
 };
 

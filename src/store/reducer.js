@@ -9,7 +9,7 @@ import { addBagReducer, removeBagReducer } from './bag/reducers';
 
 const INITIAL_STATE = {
   catalog: [],
-  bag: []
+  bag: JSON.parse(window.localStorage.getItem('bag')) || []
 };
 
 const appReducer =  (state = INITIAL_STATE, action) => {
